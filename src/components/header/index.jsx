@@ -2,11 +2,7 @@ import "./style.scss";
 import Logo from "../../assets/images/ecart-logo-color.png";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHome,
-  faEnvelope,
-  faShoppingCart,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const menuItems = [
@@ -16,7 +12,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav>
+      <nav className="flex justify-between">
         <Link to="/">
           <img className="logo" src={Logo} alt="Logo" />
         </Link>
