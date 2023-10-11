@@ -6,7 +6,7 @@ import { faEnvelope, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
   const menuItems = [
-    { url: "/contact", text: "Contact", icon: faEnvelope }, //
+    { url: "/contact", text: "Contact", icon: faEnvelope },
     { url: "/cart", text: "Cart", icon: faShoppingCart },
   ];
 
