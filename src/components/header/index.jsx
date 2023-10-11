@@ -1,5 +1,6 @@
+import "./style.scss";
 import { Link } from "react-router-dom";
-import Logo from "../assets/images/ecart-logo-color.png";
+import Logo from "../../assets/images/ecart-logo-color.png";
 
 const Header = () => {
   const menuItems = [
@@ -12,7 +13,7 @@ const Header = () => {
       <nav>
         <Link to="/">
           {" "}
-          <img src={Logo} alt="Logo" />;
+          <img className="logo" src={Logo} alt="Logo" />
         </Link>
 
         <ul>

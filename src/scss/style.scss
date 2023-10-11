@@ -1,0 +1,6 @@
+@import "variables";
+
+body {
+  margin: 0 auto;
+  background-color: map-get($colours, brand-white);
+}
