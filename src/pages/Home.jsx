@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchProducts } from "../Api";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [data, setData] = useState([]);
@@ -29,7 +30,9 @@ function Home() {
       ) : (
         <ul>
           {data.map((item) => (
-            <li key={item.id}>{item.title}</li>
+            <li key={item.id}>
+              <Link to={`/product/${item.id}`}>{item.title}</Link>
+            </li>
           ))}
         </ul>
       )}
