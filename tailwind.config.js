@@ -8,6 +8,7 @@ export default {
         "brand-black": "#2E383F",
         "brand-orange": "#F9A828",
         "brand-blue": "#2C617D",
+        "brand-grey": "#A2A2A2",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
