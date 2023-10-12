@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useCart } from "../CartContext";
+import StarRating from "../components/StarRating";
 
 function Product() {
-  const { state, dispatch } = useCart();
+  const { dispatch } = useCart();
 
   const { id } = useParams();
   const [productData, setProductData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -47,21 +47,53 @@ function Product() {
     }
   };
 
+  console.log(productData);
+
   return (
     <div>
-      <h2>Product Details</h2>
       {loading ? (
         <p>Loading...</p>
       ) : productData ? (
         <div>
-          <h3>{productData.title}</h3>
-          <p>Price: ${productData.price}</p>
-          <p>Description: {productData.description}</p>
+          <div className="flex gap-20 justify-center">
+            <div>
+              <img
+                className="h-96 w-96"
+                src={productData.imageUrl}
+                alt={productData.title}
+              />
+            </div>
+            <div className="self-center">
+              <h1>{productData.title}</h1>
+              {productData.rating && (
+                <StarRating rating={productData.rating} maxRating={5} />
+              )}{" "}
+              <p>Description: {productData.description}</p>
+              <p>{productData.discountedPrice} $</p>
+              <p className="line-through text-brand-grey">
+                {productData.price} $
+              </p>
+              <button onClick={handleAddToCart}>Add to Cart</button>
+            </div>
+          </div>
+          <div>
+            <h2 className="p-10">Reviews:</h2>
+            {productData.reviews.length > 0 ? (
+              productData.reviews.map((review, index) => (
+                <div className="p-10 mb-10" key={index}>
+                  <StarRating rating={review.rating} maxRating={5} />
+                  <p>{review.description}</p>
+                  <p>{review.username}</p>
+                </div>
+              ))
+            ) : (
+              <p>No reviews available yet.</p>
+            )}
+          </div>
         </div>
       ) : (
         <p>Product not found</p>
       )}
-      <button onClick={handleAddToCart}>Add to Cart</button>
     </div>
   );
 }
