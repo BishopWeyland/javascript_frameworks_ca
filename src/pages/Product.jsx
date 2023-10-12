@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useCart } from "../CartContext";
 
 function Product() {
+  const { state, dispatch } = useCart();
+
   const { id } = useParams();
   const [productData, setProductData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -30,6 +33,20 @@ function Product() {
     fetchProductData();
   }, [id]);
 
+  const handleAddToCart = () => {
+    if (productData) {
+      dispatch({
+        type: "ADD_ITEM",
+        payload: {
+          id: productData.id,
+          title: productData.title,
+          price: productData.price,
+          // Og legge til andre ting som trengs
+        },
+      });
+    }
+  };
+
   return (
     <div>
       <h2>Product Details</h2>
@@ -44,7 +61,7 @@ function Product() {
       ) : (
         <p>Product not found</p>
       )}
-      <button onClick={() => navigate("/cart")}>Add to Cart</button>
+      <button onClick={handleAddToCart}>Add to Cart</button>
     </div>
   );
 }
