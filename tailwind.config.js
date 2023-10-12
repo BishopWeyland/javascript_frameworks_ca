@@ -4,7 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        "brand-green": "green",
+        "brand-white": "#ECECEB",
+        "brand-black": "#2E383F",
+        "brand-orange": "#F9A828",
+        "brand-blue": "#2C617D",
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
