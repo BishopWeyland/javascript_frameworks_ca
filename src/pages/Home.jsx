@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { fetchProducts } from "../Api";
-import { Link } from "react-router-dom";
+import ProductCard from "../components/ProductCard";
+import { default as Search } from "../components/Search";
 
 function Home() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchInput, setSearchInput] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const apiData = await fetchProducts();
         setData(apiData);
-        console.log(apiData);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -23,18 +25,24 @@ function Home() {
   }, []);
 
   return (
-    <div>
-      <h1>Home Page</h1>
+    <div className="px-5 py-12">
+      <h1 className="text-3xl font-bold font-serif">Popular products:</h1>
+      <Search
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        data={data}
+        setFilteredProducts={setFilteredProducts}
+      />
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <ul>
-          {data.map((item) => (
-            <li key={item.id}>
-              <Link to={`/product/${item.id}`}>{item.title}</Link>
-            </li>
-          ))}
-        </ul>
+        <div className="flex flex-wrap gap-10 justify-center items-center">
+          {searchInput
+            ? filteredProducts.map((item) => (
+                <ProductCard key={item.id} product={item} />
+              ))
+            : data.map((item) => <ProductCard key={item.id} product={item} />)}
+        </div>
       )}
     </div>
   );
