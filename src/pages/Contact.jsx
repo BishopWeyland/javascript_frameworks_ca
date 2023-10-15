@@ -60,20 +60,36 @@ function App() {
 
   return (
     <div className="flex justify-center">
-      <div className="flex w-[100rem]">
-        <div className="py-44 w-3/6 flex justify-center items-center flex-col shadow-lg">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <h1>Contact us:</h1>
-            <StyledInput {...register("fullName")} placeholder="Full Name" />
+      <div className="flex flex-col items-center lg:flex-row w-[100rem]">
+        <div className="w-full md:w-3/6 flex justify-center items-center flex-col shadow-lg">
+          <form className="w-full p-10 " onSubmit={handleSubmit(onSubmit)}>
+            <h1 className="text-2xl md:text-5xl my-4 md:my-8">Contact us:</h1>
+            <StyledInput
+              {...register("fullName")}
+              placeholder="Full Name"
+              aria-label="Full Name"
+            />
             <p>{errors.fullName?.message}</p>
 
-            <StyledInput {...register("email")} placeholder="E-mail" />
+            <StyledInput
+              {...register("email")}
+              placeholder="E-mail"
+              aria-label="E-mail"
+            />
             <p>{errors.email?.message}</p>
 
-            <StyledInput {...register("subject")} placeholder="Subject" />
+            <StyledInput
+              {...register("subject")}
+              placeholder="Subject"
+              aria-label="Subject"
+            />
             <p>{errors.subject?.message}</p>
 
-            <StyledTextarea {...register("body")} placeholder="Message" />
+            <StyledTextarea
+              {...register("body")}
+              placeholder="Message"
+              aria-label="Message"
+            />
             <p>{errors.body?.message}</p>
 
             <BaseButton className="w-full">
@@ -81,7 +97,7 @@ function App() {
             </BaseButton>
           </form>
         </div>
-        <div className="bg-brand-black flex justify-center items-center w-3/6">
+        <div className="w-full md:w-3/6 bg-brand-black flex justify-center items-center h-full py-44">
           <ul>
             {contactItems.map((item) => (
               <li className="mb-10" key={item.text}>
