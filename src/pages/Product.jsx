@@ -41,7 +41,7 @@ function Product() {
           id: productData.id,
           title: productData.title,
           price: productData.price,
-          // Og legge til andre ting som trengs
+          img: productData.imageUrl,
         },
       });
     }
@@ -80,10 +80,10 @@ function Product() {
             <h2 className="p-10">Reviews:</h2>
             {productData.reviews.length > 0 ? (
               productData.reviews.map((review, index) => (
-                <div className="p-10 mb-10" key={index}>
+                <div className="p-10 mb-10 shadow-lg" key={index}>
                   <StarRating rating={review.rating} maxRating={5} />
-                  <p>{review.description}</p>
-                  <p>{review.username}</p>
+                  <p className="mt-2">{review.description}</p>
+                  <p className="mt-4">{review.username}</p>
                 </div>
               ))
             ) : (
