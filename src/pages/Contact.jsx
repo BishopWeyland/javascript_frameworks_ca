@@ -8,6 +8,9 @@ import {
   faPhone,
   faLocationPin,
 } from "@fortawesome/free-solid-svg-icons";
+import { BaseButton } from "../components/ButtonComponent";
+
+import { StyledInput, StyledTextarea } from "../components/input";
 
 const schema = yup
   .object({
@@ -57,47 +60,39 @@ function App() {
 
   return (
     <div className="flex justify-center">
-      <div className="py-20 w-3/6 flex justify-center items-center flex-col shadow-lg">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <h1>Contact us:</h1>
-          <input
-            className="mt-4"
-            {...register("fullName")}
-            placeholder="Full Name"
-          />
-          <p>{errors.fullName?.message}</p>
+      <div className="flex w-[100rem]">
+        <div className="py-44 w-3/6 flex justify-center items-center flex-col shadow-lg">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <h1>Contact us:</h1>
+            <StyledInput {...register("fullName")} placeholder="Full Name" />
+            <p>{errors.fullName?.message}</p>
 
-          <input className="mt-4" {...register("email")} placeholder="E-mail" />
-          <p>{errors.email?.message}</p>
+            <StyledInput {...register("email")} placeholder="E-mail" />
+            <p>{errors.email?.message}</p>
 
-          <input
-            className="mt-4"
-            {...register("subject")}
-            placeholder="Subject"
-          />
-          <p>{errors.subject?.message}</p>
+            <StyledInput {...register("subject")} placeholder="Subject" />
+            <p>{errors.subject?.message}</p>
 
-          <textarea
-            className="mt-4"
-            {...register("body")}
-            placeholder="Message"
-          />
-          <p>{errors.body?.message}</p>
+            <StyledTextarea {...register("body")} placeholder="Message" />
+            <p>{errors.body?.message}</p>
 
-          <input className="mt-4" type="submit" />
-        </form>
-      </div>
-      <div className="bg-brand-black flex justify-center items-center w-3/6">
-        <ul>
-          {contactItems.map((item) => (
-            <li className="mb-10" key={item.text}>
-              <span className="p-2 bg-brand-orange rounded-full">
-                <FontAwesomeIcon className="menu-icon" icon={item.icon} />
-              </span>{" "}
-              <span className="text-white">{item.text}</span>
-            </li>
-          ))}
-        </ul>
+            <BaseButton className="w-full">
+              <input type="submit" value="Submit" className="invisible-input" />
+            </BaseButton>
+          </form>
+        </div>
+        <div className="bg-brand-black flex justify-center items-center w-3/6">
+          <ul>
+            {contactItems.map((item) => (
+              <li className="mb-10" key={item.text}>
+                <span className="p-2 bg-brand-orange rounded-full">
+                  <FontAwesomeIcon className="menu-icon" icon={item.icon} />
+                </span>{" "}
+                <span className="text-white">{item.text}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

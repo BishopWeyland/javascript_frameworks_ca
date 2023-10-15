@@ -26,13 +26,18 @@ function Home() {
 
   return (
     <div className="px-5 py-12">
-      <h1 className="text-3xl font-bold font-serif">Popular products:</h1>
-      <Search
-        searchInput={searchInput}
-        setSearchInput={setSearchInput}
-        data={data}
-        setFilteredProducts={setFilteredProducts}
-      />
+      <div className="flex items-center justify-between my-10">
+        <h1 className="text-3xl font-bold font-serif">Popular products:</h1>
+        <div className="w-72">
+          <Search
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+            data={data}
+            setFilteredProducts={setFilteredProducts}
+          />
+        </div>
+      </div>
+
       {loading ? (
         <p>Loading...</p>
       ) : (
