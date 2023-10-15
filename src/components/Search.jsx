@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { StyledInput } from "./input";
 
 function Search({ searchInput, setSearchInput, data, setFilteredProducts }) {
   useEffect(() => {
@@ -14,12 +15,11 @@ function Search({ searchInput, setSearchInput, data, setFilteredProducts }) {
 
   return (
     <div>
-      <input
+      <StyledInput
         type="text"
         placeholder="Search"
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
-        className="w-full p-2 mt-4 mb-4 border border-gray-300 rounded-md"
       />
     </div>
   );
