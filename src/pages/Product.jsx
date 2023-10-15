@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "../CartContext";
 import StarRating from "../components/StarRating";
+import { BaseButton } from "../components/ButtonComponent";
 
 function Product() {
   const { dispatch } = useCart();
@@ -73,7 +74,7 @@ function Product() {
               <p className="line-through text-brand-grey">
                 {productData.price} $
               </p>
-              <button onClick={handleAddToCart}>Add to Cart</button>
+              <BaseButton onClick={handleAddToCart}>Add to Cart</BaseButton>
             </div>
           </div>
           <div>
