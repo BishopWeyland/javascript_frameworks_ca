@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const BaseButton = styled.button`
+  font-size: 20px;
+  font-weight: 600;
   background-color: #f9a828;
   border-radius: 6px;
   padding: 10px 20px;
