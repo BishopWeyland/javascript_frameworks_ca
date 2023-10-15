@@ -6,9 +6,15 @@ export const useCart = () => {
   return useContext(CartContext);
 };
 
-const initialState = {
-  items: [],
-  totalItems: 0,
+const getInitialState = () => {
+  const savedCart = localStorage.getItem("cart");
+  if (savedCart) {
+    return JSON.parse(savedCart);
+  }
+  return {
+    items: [],
+    totalItems: 0,
+  };
 };
 
 const cartReducer = (state, action) => {
@@ -43,16 +49,34 @@ const cartReducer = (state, action) => {
         totalItems: state.totalItems - action.payload.quantity,
       };
 
+    case "LOAD_CART":
+      return {
+        ...state,
+        items: action.payload.items,
+        totalItems: action.payload.totalItems,
+      };
+
     default:
       return state;
   }
 };
 
 export const CartProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(cartReducer, initialState);
+  const [state, dispatch] = useReducer(cartReducer, getInitialState());
 
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(state));
+    try {
+      localStorage.setItem(
+        "cart",
+        JSON.stringify({
+          items: state.items,
+          totalItems: state.totalItems,
+        })
+      );
+      console.log("Saved cart data to localStorage:", state);
+    } catch (error) {
+      console.error("Error saving to local storage:", error);
+    }
   }, [state]);
 
   return (
