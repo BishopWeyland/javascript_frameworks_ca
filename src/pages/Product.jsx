@@ -56,21 +56,23 @@ function Product() {
         <p>Loading...</p>
       ) : productData ? (
         <div>
-          <div className="flex gap-20 justify-center">
-            <div>
+          <div className="flex-col flex gap-20 md:justify-center md:flex-row">
+            <div className="flex justify-center">
               <img
-                className="h-96 w-96"
+                className="object-contain h-96 md:h-96 md:w-96"
                 src={productData.imageUrl}
                 alt={productData.title}
               />
             </div>
             <div className="self-center">
-              <h1>{productData.title}</h1>
+              <h1 className="text-2xl md:text-5xl my-4 md:my-8">
+                {productData.title}
+              </h1>
               {productData.rating && (
                 <StarRating rating={productData.rating} maxRating={5} />
               )}{" "}
               <p>Description: {productData.description}</p>
-              <p>{productData.discountedPrice} $</p>
+              <p className="font-bold">{productData.discountedPrice} $</p>
               <p className="line-through text-brand-grey">
                 {productData.price} $
               </p>
@@ -78,13 +80,13 @@ function Product() {
             </div>
           </div>
           <div>
-            <h2 className="p-10">Reviews:</h2>
+            <h2 className="py-10 font-bold">Reviews:</h2>
             {productData.reviews.length > 0 ? (
               productData.reviews.map((review, index) => (
                 <div className="p-10 mb-10 shadow-lg" key={index}>
                   <StarRating rating={review.rating} maxRating={5} />
                   <p className="mt-2">{review.description}</p>
-                  <p className="mt-4">{review.username}</p>
+                  <p className="font-bold mt-4">{review.username}</p>
                 </div>
               ))
             ) : (
