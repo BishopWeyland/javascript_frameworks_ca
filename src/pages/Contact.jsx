@@ -56,31 +56,45 @@ function App() {
   ];
 
   return (
-    <div>
-      <div>
-        <h1>Contact us:</h1>
+    <div className="flex justify-center">
+      <div className="py-20 w-3/6 flex justify-center items-center flex-col shadow-lg">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input {...register("fullName")} placeholder="Full Name" />
+          <h1>Contact us:</h1>
+          <input
+            className="mt-4"
+            {...register("fullName")}
+            placeholder="Full Name"
+          />
           <p>{errors.fullName?.message}</p>
 
-          <input {...register("email")} placeholder="E-mail" />
+          <input className="mt-4" {...register("email")} placeholder="E-mail" />
           <p>{errors.email?.message}</p>
 
-          <input {...register("subject")} placeholder="Subject" />
+          <input
+            className="mt-4"
+            {...register("subject")}
+            placeholder="Subject"
+          />
           <p>{errors.subject?.message}</p>
 
-          <textarea {...register("body")} placeholder="Message" />
+          <textarea
+            className="mt-4"
+            {...register("body")}
+            placeholder="Message"
+          />
           <p>{errors.body?.message}</p>
 
-          <input type="submit" />
+          <input className="mt-4" type="submit" />
         </form>
       </div>
-      <div>
+      <div className="bg-brand-black flex justify-center items-center w-3/6">
         <ul>
           {contactItems.map((item) => (
-            <li key={item.text}>
-              <FontAwesomeIcon className="menu-icon" icon={item.icon} />{" "}
-              {item.text}
+            <li className="mb-10" key={item.text}>
+              <span className="p-2 bg-brand-orange rounded-full">
+                <FontAwesomeIcon className="menu-icon" icon={item.icon} />
+              </span>{" "}
+              <span className="text-white">{item.text}</span>
             </li>
           ))}
         </ul>
