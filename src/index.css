@@ -6,3 +6,17 @@ body {
   background-color: #ececeb;
   margin: 0rem 10rem;
 }
+
+@media (max-width: 1000px) {
+  body {
+    background-color: #ececeb;
+    margin: 0rem 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    background-color: #ececeb;
+    margin: 0rem 1rem;
+  }
+}
